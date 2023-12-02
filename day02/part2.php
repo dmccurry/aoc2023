@@ -3,6 +3,7 @@
 $file = file_get_contents("./input");
 $lines = explode("\n", $file);
 $total = 0;
+$start = microtime(true);
 foreach ($lines as $game) {
     [$game, $cubes] = explode(":", $game);
     $game_num = intval(str_replace("Game ", "", $game));
@@ -30,3 +31,4 @@ foreach ($lines as $game) {
 }
 
 print "Solution is " . $total . "\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
