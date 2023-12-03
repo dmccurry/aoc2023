@@ -24,10 +24,11 @@ for ($i = 0; $i < count($lines); $i++) {
             if (is_numeric($chars[$j + 1])) {
                 $k = $j + 1;
                 $num = $chars[$k];
-                while ($k > 0 && is_numeric($chars[++$k])) $num .= $chars[$k];
+                while ($k > 0 && $k < count($chars) - 1 && is_numeric($chars[++$k])) $num .= $chars[$k];
                 $adjacent_nums[] = intval($num);
             }
             // above
+            // so much copy paste...
             if ($i > 0) {
                 if (is_numeric($lines[$i-1][$j-1])) {
                     $k = $j - 1;
@@ -56,7 +57,7 @@ for ($i = 0; $i < count($lines); $i++) {
                     while($k >= 0 && is_numeric($lines[$i-1][--$k])); 
                     $num = "";
                     $lines[$i-1][$k] = ".";
-                    while($k < count($lines[$i-1]) && is_numeric($lines[$i-1][++$k])) {
+                    while($k < count($lines[$i-1]) - 1 && is_numeric($lines[$i-1][++$k])) {
                         $num .= $lines[$i-1][$k];
                         $lines[$i-1][$k] = ".";
                     }
@@ -93,7 +94,7 @@ for ($i = 0; $i < count($lines); $i++) {
                     while($k >= 0 && is_numeric($lines[$i+1][--$k])); 
                     $num = "";
                     $lines[$i+1][$k] = ".";
-                    while($k < count($lines[$i+1]) && is_numeric($lines[$i+1][++$k])) {
+                    while($k < count($lines[$i+1]) - 1 && is_numeric($lines[$i+1][++$k])) {
                         $num .= $lines[$i+1][$k];
                         $lines[$i+1][$k] = ".";
                     }
@@ -108,7 +109,3 @@ for ($i = 0; $i < count($lines); $i++) {
 }
 
 print "Solution is $total\n";
-
-function is_symbol($c) {
-    return $c == "*";
-}
