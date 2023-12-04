@@ -3,6 +3,7 @@ $file = file_get_contents("./input");
 
 $total = 0;
 $lines = explode("\n", $file);
+$start = microtime(true);
 
 foreach($lines as $line) {
     [$card, $nums] = explode(":", $line);
@@ -23,3 +24,4 @@ foreach($lines as $line) {
 }
 
 print "Solution is $total\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";

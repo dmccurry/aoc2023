@@ -3,6 +3,7 @@ $file = file_get_contents("./input");
 
 $total = 0;
 $lines = explode("\n", $file);
+$start = microtime(true);
 $num_lines = count($lines);
 $matching_numbers = array();
 $instances = array();
@@ -30,3 +31,4 @@ foreach ($matching_numbers as $card => $winners) {
     }
 }
 print "Solution is " . array_sum($instances) . "\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
