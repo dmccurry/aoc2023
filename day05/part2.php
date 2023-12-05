@@ -8,7 +8,9 @@ $seeds_str = explode(": ", $seeds_line);
 $seeds_ranges = array_map(fn($value) => intval($value), explode(" ", $seeds_str[1]));
 
 $seeds = array();
-// this code to ballpark the range.
+// this code to guess
+// if you vary what you add to $current you'll be able to 
+// get that ballpark for the loop below
 // for ($i = 0; $i<count($seeds_ranges); $i+=2) {
 //     $start = $seeds_ranges[$i];
 //     $end = $seeds_ranges[$i+1] + $seeds_ranges[$i];
@@ -19,6 +21,7 @@ $seeds = array();
 //     }
 // }
 
+// look ^^^^^ to see how to get these
 for ($i=3969170000; $i<3969180000; $i++) {
     $seeds[] = $i;
 }
