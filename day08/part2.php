@@ -15,7 +15,7 @@ foreach(explode("\n", $locations_in) as $line) {
     $locations[$point][] = $r;
     if (str_split($point)[2] == "A") $nodes[] = $point;
 }
-
+$start = microtime(true);
 $dir_i = 0;
 $counts = array();
 
@@ -40,6 +40,7 @@ foreach ($counts as $key => $value) {
 }
 
 print "Solution is " . lcm($nums) . "\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
 
 function lcm($nums) {
     $ret = $nums[0];

@@ -17,7 +17,7 @@ foreach(explode("\n", $locations_in) as $line) {
 $dir_i = 0;
 $steps = 0;
 $location = "AAA";
-
+$start = microtime(true);
 while ($location != "ZZZ") {
     $dir = $directions[$dir_i++];
     if ($dir_i == count($directions)) $dir_i = 0;
@@ -29,3 +29,4 @@ while ($location != "ZZZ") {
     $steps++;
 }
 print "Solution is $steps\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
