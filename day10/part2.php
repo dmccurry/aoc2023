@@ -7,6 +7,7 @@ foreach ($file_lines as $line) {
     $grid[] = str_split($line);
     $grid_original[] = str_split($line);
 }
+$start = microtime(true);
 $start_row = -1;
 $start_col = -1;
 for ($row=0; $row<count($grid); $row++) {
@@ -69,7 +70,7 @@ for ($row = 0; $row < count($grid); $row++) {
     for ($col=0; $col < count($grid[$row]); $col++) {
         $cross = 0;
         if ($grid[$row][$col] != "X") {
-            for ($ncol = $col - 1; $ncol >= 0; $ncol--) {
+            for ($ncol = $col + 1; $ncol < count($grid[$row]); $ncol++) { // go right from the pipe
                 if ($grid[$row][$ncol] == "X") {
                     if ($grid_original[$row][$ncol] == "|" || $grid_original[$row][$ncol] == "J" || $grid_original[$row][$ncol] == "L") {
                         $cross++;
@@ -77,10 +78,12 @@ for ($row = 0; $row < count($grid); $row++) {
                 }
             }
         }
-        if ($cross % 2 == 1) $total++; // if it's odd, then it's inside.
+        // odd number of intersections is inside the polygon.
+        if ($cross % 2 == 1) $total++;
     }
 }
 print "Solution is $total\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
 
 
 function get_next($current, $visited, $grid, $start) {

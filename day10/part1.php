@@ -5,6 +5,7 @@ $file_lines = explode("\n", $file);
 foreach ($file_lines as $line) {
     $grid[] = str_split($line);
 }
+$start = microtime(true);
 $start_row = -1;
 $start_col = -1;
 for ($row=0; $row<count($grid); $row++) {
@@ -60,6 +61,7 @@ while(!$end) {
     if ($next_row == $start_row && $next_col == $start_col) $end = true;
 }
 print "Solution is " . count($path) / 2 . "\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
 
 function get_next($current, $visited, $grid, $start) {
     $current_point = $grid[$current[0]][$current[1]];
