@@ -4,6 +4,7 @@ $springs = explode("\n", $file);
 
 $total = 0;
 $memo = array();
+$start = microtime(true);
 foreach ($springs as $spring) {
     [$map, $regions] = explode(" ", $spring);
     $regions = array_map(fn($v) => intval($v), explode(",", $regions));
@@ -13,6 +14,7 @@ foreach ($springs as $spring) {
 }
 
 print "Solution is $total\n";
+print "Took " . number_format((microtime(true) - $start) * 1000, 2) . " ms\n";
 
 function count_springs($map, $regions) {
     global $memo;
