@@ -21,6 +21,8 @@ $highs = 0;
 $lows = 0;
 $press = 0;
 
+// you gotta get these from your input.
+// no way I'm doing this dynamically.
 $cycles = ["vd", "ns", "bh", "dl"];
 $iterations = [];
 
