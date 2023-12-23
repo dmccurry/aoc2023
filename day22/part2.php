@@ -54,7 +54,6 @@ foreach ($bricks as $key => $value) {
     }
 }
 $total = 0;
-// 44213 too low
 foreach ($bricks as $brick) {
     $total_moved = 0;
     $moved = [$brick->id];
