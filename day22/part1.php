@@ -13,13 +13,7 @@ foreach (explode("\n", $file) as $i => $line) {
 }
 
 // sort the bricks by z
-usort($bricks, fn($a, $b) => min($a->a[2], $a->b[2]) <=> min($b->a[2], $b->b[2]));
-
-$bricks_by_id = array();
-foreach ($bricks as $brick) {
-    $bricks_by_id[$brick->id] = $brick;
-}
-$bricks = $bricks_by_id;
+uasort($bricks, fn($a, $b) => min($a->a[2], $a->b[2]) <=> min($b->a[2], $b->b[2]));
 
 // now move all the bricks to the final position.
 $settled_bricks = array();
@@ -36,12 +30,7 @@ foreach ($bricks as $id => $brick) {
     }
 }
 $bricks = $settled_bricks;
-usort($bricks, fn($a, $b) => min($a->a[2], $a->b[2]) <=> min($b->a[2], $b->b[2]));
-$bricks_by_id = array();
-foreach ($bricks as $brick) {
-    $bricks_by_id[$brick->id] = $brick;
-}
-$bricks = $bricks_by_id;
+uasort($bricks, fn($a, $b) => min($a->a[2], $a->b[2]) <=> min($b->a[2], $b->b[2]));
 foreach ($bricks as $key => $value) {
     foreach ($bricks as $otherkey => $othervalue) {
         if ($key != $otherkey) {
